@@ -4,9 +4,83 @@
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  /* @apply bg-white dark:bg-gray-950;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
+  } */
+}
+@layer base {
+  :root {
+    /* Base Colors */
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 0 0% 3.9%; /* Almost black */
+
+    /* Border and Radius */
+    --radius: 0.5rem;
+    --border-width: 1px;
+
+    /* Primary Colors */
+    --primary: 0 0% 9%; /* Deep black tone */
+    --primary-foreground: 0 0% 98%; /* Near white for contrast */
+
+    /* Secondary Colors */
+    --secondary: 0 0% 96.1%; /* Light grey */
+    --secondary-foreground: 0 0% 9%; /* Black for contrast on grey */
+
+    /* Muted Colors */
+    --muted: 0 0% 96.1%; /* Muted light grey */
+    --muted-foreground: 0 0% 45.1%; /* Medium grey for muted text */
+
+    /* Accent Colors */
+    --accent: 39 98% 50%; /* Yellow */
+    --accent-foreground: 0 0% 9%; /* Black for text/icons on yellow */
+
+    /* Warning/Error/Alert Colors */
+    --red: 0 85% 50%; /* Pirelli's signature red */
+    --red-foreground: 0 0% 98%; /* White for contrast on red */
+    --yellow: 53 99.2% 50.2%; /* Pirelli's yellow */
+    --yellow-foreground: 0 0% 9%; /* Black for contrast on yellow */
+  }
+
+  :root[class~="dark"] {
+    /* Base Colors */
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 0 0% 3.9%; /* Almost black */
+
+    /* Border and Radius */
+    --radius: 0.5rem;
+    --border-width: 1px;
+
+    /* Primary Colors */
+    --primary: 0 0% 9%; /* Deep black tone */
+    --primary-foreground: 0 0% 98%; /* Near white for contrast */
+
+    /* Secondary Colors */
+    --secondary: 0 0% 96.1%; /* Light grey */
+    --secondary-foreground: 0 0% 9%; /* Black for contrast on grey */
+
+    /* Muted Colors */
+    --muted: 0 0% 96.1%; /* Muted light grey */
+    --muted-foreground: 0 0% 45.1%; /* Medium grey for muted text */
+
+    /* Accent Colors */
+    --accent: 39 98% 50%; /* Yellow */
+    --accent-foreground: 0 0% 9%; /* Black for text/icons on yellow */
+
+    /* Warning/Error/Alert Colors */
+    --red: 0 85% 50%; /* Pirelli's signature red */
+    --red-foreground: 0 0% 98%; /* White for contrast on red */
+    --yellow: 39 98% 50%; /* Pirelli's yellow */
+    --yellow-foreground: 0 0% 9%; /* Black for contrast on yellow */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
