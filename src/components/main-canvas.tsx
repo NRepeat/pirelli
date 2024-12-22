@@ -1,17 +1,28 @@
 import Porsche from "./Porche/Proche"
 import * as THREE from 'three'
-import { useEffect, useRef, useState } from 'react'
-import { Canvas, ThreeEvent, useFrame } from '@react-three/fiber'
+import { useRef, useState } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
 import { LayerMaterial, Color, Depth } from 'lamina'
 import { AccumulativeShadows, Environment, Lightformer, OrbitControls, PerformanceMonitor, RandomizedLight } from "@react-three/drei"
 import TierInfoTab from "./tier-info-tab"
 import { tier_buttons } from "../assets/tier-data"
 import TierButtonType from "./tier-button-type"
 import useCanvasStore from "../store/canvas"
-const MainCanvas = () => {
+import Porsches from "./Porche/Proche"
+import { MdOutlineNavigateBefore, MdOutlineNavigateNext } from "react-icons/md";
 
+const MainCanvas = () => {
+	const [active, setActive] = useState<'prev' | 'next' | null>(
+		null
+	)
 	const canvasState = useCanvasStore((state) => state)
 
+	const changeNextModel = () => {
+		setActive('next')
+	};
+	const changePrevModel = () => {
+		setActive('prev')
+	};
 	const handleOrbitControlRotationStart = () => {
 		canvasState.setOrbitControlBehavior(true)
 	}
@@ -32,20 +43,26 @@ const MainCanvas = () => {
 				</div>
 
 			</div>
+			<button onClick={changeNextModel} className="bg-gray-800/20 absolute e top-1/2 left-0 text-white z-20">
+				< MdOutlineNavigateBefore className="w-12 h-12" />
+			</button>
+			<button onClick={changePrevModel} className="bg-gray-800/20 absolute top-1/2   right-0 text-white z-20">
+				<MdOutlineNavigateNext className="w-12 h-12" />
+			</button>
 			{canvasState.tierTab && <TierInfoTab value={canvasState.tierTab} />
 			}
 			<Canvas shadows camera={{ position: canvasState.cameraPosition, fov: 30 }} dpr={[1, 12]}  >
-				<OrbitControls onStart={handleOrbitControlRotationStart} onEnd={handleOrbitControlRotationStop} zoomSpeed={0.075} enableZoom={false} />
-				<spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} castShadow intensity={2} shadow-bias={-0.0002} />
-				<ambientLight intensity={5} />
-				<Porsche scale={1.6} position={[-0.5, -0.18, 0]} rotation={[0, Math.PI / 5, 0]} />
-				<AccumulativeShadows position={[0, -1.16, 0]} frames={100} alphaTest={0.3} scale={10}>
-					<RandomizedLight amount={2} radius={10} ambient={0.5} position={[1, 5, -1]} />
+				<OrbitControls onStart={handleOrbitControlRotationStart} onEnd={handleOrbitControlRotationStop} enableZoom={false} />
+				<spotLight position={[1, 12, 3]} angle={2} penumbra={1} castShadow intensity={2} shadow-bias={-0.02} />
+				<ambientLight intensity={12} />
+				<Porsches isActive={active} setIsActive={setActive} />
+				<AccumulativeShadows position={[0, -1.14, 0]} frames={100} alphaTest={1} scale={30}>
+					<RandomizedLight amount={2} radius={21} ambient={21} position={[12, 52, -12]} />
 				</AccumulativeShadows>
 				{/** PerfMon will detect performance issues */}
 				<PerformanceMonitor />
 				{/* Renders contents "live" into a HDRI environment (scene.environment). */}
-				<Environment frames={Infinity} resolution={556} background blur={1}>
+				<Environment frames={Infinity} resolution={156} background blur={1}>
 					<Lightformers />
 				</Environment>
 				<CameraRig position={canvasState.cameraPosition} defaultAnimation={canvasState.defaultAnimation} orbitControlBehavior={canvasState.orbitControlBehavior} />

@@ -7,7 +7,7 @@ export const tabs: { [key: string]: string } = {
 	3: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus veritatis exercitationem error a sed accusamus molestias distinctio saepe tempore, ipsum tenetur quia nobis amet vero quam dicta eos, ad sapiente! tempore, ipsum tenetur quia nobis amet vero quam dicta eos, ad sapiente!tempore, ipsum tenetur quia nobis amet vero quam dicta eos, ad sapiente!'
 }
 export const tier_buttons: { [key: string]: TierButtonsProps } = {
-	summer: { textValue: 'Summer', defaultAnimation: false, position: new Vector3(-2, -1, 5), tab: '1' },
-	winter: { textValue: 'Winter', defaultAnimation: false, position: new Vector3(-6, -1, -2), tab: '2' },
+	summer: { textValue: 'Summer', defaultAnimation: false, position: new Vector3(-1, -1, 8), tab: '1' },
+	winter: { textValue: 'Winter', defaultAnimation: false, position: new Vector3(-6, -1, 1), tab: '2' },
 	allSeason: { textValue: 'All seasons', defaultAnimation: true, position: new Vector3(-2, -1, 5), tab: '3' },
 }
